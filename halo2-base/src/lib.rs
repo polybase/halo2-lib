@@ -8,7 +8,7 @@
 #![allow(clippy::too_many_arguments)]
 #![warn(clippy::default_numeric_fallback)]
 #![warn(missing_docs)]
-
+#![feature(once_cell)]
 use std::any::TypeId;
 
 use getset::CopyGetters;
@@ -37,7 +37,7 @@ compile_error!("Must enable exactly one of \"halo2-pse\" or \"halo2-axiom\" feat
 // use gates::flex_gate::MAX_PHASE;
 #[cfg(feature = "halo2-pse")]
 pub use halo2_proofs;
-#[cfg(feature = "halo2-axiom")]
+#[cfg(not(feature = "halo2-pse"))]
 pub use halo2_proofs_axiom as halo2_proofs;
 
 use halo2_proofs::halo2curves::ff;
